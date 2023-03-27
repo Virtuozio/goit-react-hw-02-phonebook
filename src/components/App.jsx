@@ -17,10 +17,13 @@ export class App extends Component {
 
   handleCreate = e => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const names = this.state.contacts.map(contact => contact.name);
+    if (names.includes(this.state.name)) {
+      alert(`${this.state.name} is already in contacts.`);
+      return;
+    }
     this.setState(prev => {
-      // if (prev.contacts.map(contact => { contact.name })) {
-      //   return;
-      // }
       return {
         contacts: [
           ...prev.contacts,
@@ -32,10 +35,17 @@ export class App extends Component {
         ],
       };
     });
+    form.reset();
   };
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
-    console.log(this.state);
+  };
+  deleteContact = ({ target }) => {
+    const index = this.state.contacts.findIndex(
+      contact => contact.id === target.id
+    );
+    console.log(index);
+    this.state.contacts.splice(index, 1);
   };
 
   render() {
@@ -52,6 +62,7 @@ export class App extends Component {
         <ContactList
           contacts={this.state.contacts}
           filter={this.state.filter}
+          deleteBtn={this.deleteContact}
         />
       </div>
     );
