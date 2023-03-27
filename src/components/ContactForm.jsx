@@ -1,7 +1,9 @@
-export const ContactForm = ({ handleChange, handleCreate }) => {
+import PropTypes from 'prop-types';
+
+export const ContactForm = ({ onChange, onAddContact }) => {
   return (
     <>
-      <form onSubmit={handleCreate}>
+      <form onSubmit={onAddContact}>
         <div className="mb-3">
           <label htmlFor="inputName" className="form-label">
             Name
@@ -10,7 +12,7 @@ export const ContactForm = ({ handleChange, handleCreate }) => {
             id="inputName"
             type="text"
             name="name"
-            onChange={handleChange}
+            onChange={onChange}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -24,7 +26,7 @@ export const ContactForm = ({ handleChange, handleCreate }) => {
             id="inputNumber"
             type="tel"
             name="number"
-            onChange={handleChange}
+            onChange={onChange}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
@@ -36,4 +38,9 @@ export const ContactForm = ({ handleChange, handleCreate }) => {
       </form>
     </>
   );
+};
+
+ContactForm.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onAddContact: PropTypes.func.isRequired,
 };

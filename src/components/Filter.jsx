@@ -1,4 +1,6 @@
-export const Filter = ({ filter, handleChange }) => {
+import PropTypes from 'prop-types';
+
+export const Filter = ({ filter, onChange }) => {
   return (
     <>
       <label htmlFor="findName" className="form-label">
@@ -9,11 +11,15 @@ export const Filter = ({ filter, handleChange }) => {
         type="text"
         name="filter"
         value={filter}
-        onChange={handleChange}
+        onChange={onChange}
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
     </>
   );
+};
+Filter.propTypes = {
+  filter: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

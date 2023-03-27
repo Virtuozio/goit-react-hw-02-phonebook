@@ -43,12 +43,12 @@ export class App extends Component {
       <div>
         <h1>Phonebook</h1>
         <ContactForm
-          handleChange={this.handleChange}
-          handleCreate={this.handleCreate}
+          onChange={this.handleChange}
+          onAddContact={this.handleCreate}
         />
 
         <h2>Contacts</h2>
-        <Filter filter={this.state.filter} handleChange={this.handleChange} />
+        <Filter filter={this.state.filter} onChange={this.handleChange} />
         <ContactList
           contacts={this.state.contacts}
           filter={this.state.filter}
