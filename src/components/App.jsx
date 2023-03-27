@@ -46,6 +46,9 @@ export class App extends Component {
     );
     console.log(index);
     this.state.contacts.splice(index, 1);
+    this.setState({
+      contacts: this.state.contacts,
+    });
   };
 
   render() {
